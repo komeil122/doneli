@@ -200,7 +200,7 @@ function renderMenu() {
       </div>`;
     });
 
-    container.innerHTML = html || `<p style="text-align:center;color:var(--text-muted);padding:3rem">موردی یافت نشد.</p>`;
+    container.innerHTML = html || '<p class="menu-empty">موردی یافت نشد.</p>';
     document.getElementById('menuStatus').textContent = resultCount
       ? `${resultCount.toLocaleString('fa')} مورد در منو`
       : 'موردی یافت نشد';
@@ -579,8 +579,6 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.04, rootMargin: '0px 0px 56px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Contact form
-// Init
 document.getElementById('copyrightYear').textContent =
   new Intl.DateTimeFormat('fa-IR-u-ca-persian', { year: 'numeric' }).format(new Date());
 renderMenu();
