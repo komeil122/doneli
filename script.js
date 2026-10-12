@@ -75,6 +75,14 @@ function changeBranch() {
    syrups تعریف شده تا کاربر بعد از انتخاب نوع دانه بتواند
    یک سیروپ اختیاری هم اضافه کند.
 ══════════════════════════════════ */
+const LATTE_SYRUPS = [
+  { name:'شکلات', price:30000 },
+  { name:'تارگیل', price:30000 },
+  { name:'وانیل', price:30000 },
+  { name:'فندق', price:30000 },
+  { name:'کارامل', price:30000 },
+];
+
 const menuData = [
   {
     id:'hotCoffee', label:'نوشیدنی‌های گرم بر پایه قهوه', icon:'coffee',
@@ -84,7 +92,7 @@ const menuData = [
       { name:'امریکانو',    desc:'اسپرسو با آب گرم، ملایم و عمیق', prices:[{l:'ترکیبی',v:'۱۴۵,۰۰۰',n:145000},{l:'تک خاستگاه',v:'۱۹۵,۰۰۰',n:195000}] },
       { name:'کاپوچینو',    desc:'اسپرسو با شیر و کف فشرده', prices:[{l:'ترکیبی',v:'۱۹۵,۰۰۰',n:195000},{l:'تک خاستگاه',v:'۲۵۰,۰۰۰',n:250000}] },
       { name:'لاته',        desc:'اسپرسو با شیر بخار و کف ابری', prices:[{l:'ترکیبی',v:'۲۰۵,۰۰۰',n:205000},{l:'تک خاستگاه',v:'۲۶۰,۰۰۰',n:260000}],
-        syrups:[{name:'شکلات',price:30000},{name:'تارگیل',price:30000},{name:'وانیل',price:30000},{name:'فندق',price:30000},{name:'کارامل',price:30000}] },
+        syrups:LATTE_SYRUPS },
     ]
   },
   {
@@ -93,7 +101,7 @@ const menuData = [
     items:[
       { name:'آیس امریکانو',   desc:'امریکانوی سرد روی یخ', prices:[{l:'ترکیبی',v:'۱۵۰,۰۰۰',n:150000},{l:'تک خاستگاه',v:'۲۰۰,۰۰۰',n:200000}] },
       { name:'آیس لاته',       desc:'لاته سرد با شیر و یخ', prices:[{l:'ترکیبی',v:'۲۱۰,۰۰۰',n:210000},{l:'تک خاستگاه',v:'۲۶۵,۰۰۰',n:265000}],
-        syrups:[{name:'شکلات',price:30000},{name:'تارگیل',price:30000},{name:'وانیل',price:30000},{name:'فندق',price:30000},{name:'کارامل',price:30000}] },
+        syrups:LATTE_SYRUPS },
       { name:'کلد برو تک خاستگاه', desc:'عصاره‌گیری با روش همجواری', prices:[{l:'قیمت',v:'۲۶۵,۰۰۰',n:265000}] },
       { name:'کلد برو لاماکینا',    desc:'کلد برو ویژه با روش لاماکینا', prices:[] },
       { name:'کلد برو تیپیکا لیچی', desc:'کلد برو با نت‌های لیچی', prices:[] },
@@ -206,12 +214,7 @@ function renderMenu() {
       : 'موردی یافت نشد';
   };
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (document.startViewTransition && !prefersReducedMotion) {
-    document.startViewTransition(update);
-  } else {
-    update();
-  }
+  update();
 }
 
 function buildMenuItemHTML(item) {

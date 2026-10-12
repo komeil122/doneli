@@ -16,7 +16,7 @@
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; overflow-x:clip; }
 button, input, textarea { font:inherit; }
 button { color:inherit; }
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
@@ -904,10 +904,6 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
   .nav-right { gap:6px; }
   .cart-btn { padding:8px; }
 }
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; scroll-behavior:auto!important; }
-}
-
 /* ══════════════════════════════════
    GYPSOPHILA — EDITORIAL ART DIRECTION
 ══════════════════════════════════ */
@@ -1222,15 +1218,6 @@ footer { background:#0B0B0C; padding:clamp(44px,7vw,88px) clamp(24px,7vw,104px) 
   .hero-actions { align-items:stretch; }
   .btn-primary, .btn-outline { padding-inline:14px; }
 }
-@media(prefers-reduced-motion:reduce) {
-  .hero-image, .hero::before, .hero-branch-banner, .hero-title span, .hero-title em, .hero-subtitle, .hero-actions {
-    animation:none!important;
-  }
-  .hero-image { opacity:0.58; }
-  .hero::before { opacity:1; }
-  .reveal { opacity:1; transform:none; transition:none; }
-}
-
 /* Dark editorial surfaces keep the menu and ordering controls in the same mood. */
 #menu {
   color:var(--cream);
@@ -1300,10 +1287,6 @@ footer { background:#0B0B0C; padding:clamp(44px,7vw,88px) clamp(24px,7vw,104px) 
 .variant-add-btn { color:#FFF9F6; background:#481725; }
 .variant-add-btn:hover { color:#FFF9F6; background:#612234; }
 
-@media(prefers-reduced-motion:reduce) {
-  .reveal { opacity:1; transform:none; }
-}
-
 /* Keep motion focused on composited properties for a calmer, smoother feel. */
 :root { --motion-ease:cubic-bezier(0.22,1,0.36,1); }
 .reveal {
@@ -1348,11 +1331,6 @@ footer { background:#0B0B0C; padding:clamp(44px,7vw,88px) clamp(24px,7vw,104px) 
 .lightbox-close:hover { transform:rotate(4deg) scale(1.06); }
 .toast { transition:opacity 220ms ease,transform 320ms var(--motion-ease); }
 .back-top { transition:opacity 220ms ease,background-color 220ms ease,transform 260ms var(--motion-ease); }
-#menuContent { view-transition-name:menu-content; }
-::view-transition-old(menu-content) { animation:menu-content-out 140ms ease both; }
-::view-transition-new(menu-content) { animation:menu-content-in 240ms var(--motion-ease) both; }
-@keyframes menu-content-out { to { opacity:0; transform:translateY(-4px); } }
-@keyframes menu-content-in { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
 @media(max-width:768px) {
   .mobile-nav {
     display:flex;
@@ -1369,13 +1347,6 @@ footer { background:#0B0B0C; padding:clamp(44px,7vw,88px) clamp(24px,7vw,104px) 
     transform:translateY(0);
     transition-delay:0s;
   }
-}
-@media(prefers-reduced-motion:reduce) {
-  .reveal { opacity:1; transform:none; transition:none; }
-  .hero-image, .gallery-item img, .branch-img img { transition:none; }
-  .lightbox, .lightbox img { transition:none; }
-  .mobile-nav { transition:none; transform:none; }
-  ::view-transition-old(menu-content), ::view-transition-new(menu-content) { animation:none; }
 }
 @media(max-width:768px) {
   .hero {
@@ -1599,4 +1570,20 @@ footer { background:#111012; color:rgba(238,231,232,0.56); }
   #menuFilters::-webkit-scrollbar { height:3px; }
   #menuFilters::-webkit-scrollbar-thumb { background:rgba(192,160,169,0.55); border-radius:3px; }
   #menuFilters .filter-btn { flex:0 0 auto; scroll-snap-align:center; white-space:nowrap; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:0.01ms!important;
+    transition-duration:0.01ms!important;
+    scroll-behavior:auto!important;
+  }
+  .reveal { opacity:1; transform:none; transition:none; }
+  .hero-image, .hero::before, .hero-branch-banner, .hero-title span, .hero-title em, .hero-subtitle, .hero-actions {
+    animation:none!important;
+  }
+  .hero-image { opacity:0.58; transition:none; }
+  .hero::before { opacity:1; }
+  .gallery-item img, .branch-img img, .lightbox, .lightbox img, .mobile-nav { transition:none; }
+  .mobile-nav { transform:none; }
 }
