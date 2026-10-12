@@ -1541,6 +1541,7 @@ footer { background:#111012; color:rgba(238,231,232,0.56); }
 .footer-brand p, .footer-col a { color:rgba(238,231,232,0.58); }
 .footer-col h4 { color:#EEE7E8; }
 .footer-col a:hover, .footer-bottom a { color:#D2BBC2; }
+.footer-credit { color:rgba(238,231,232,0.7); }
 .back-top { background:#EEE7E8; color:#111012; }
 .back-top:hover { background:#D2BBC2; }
 
