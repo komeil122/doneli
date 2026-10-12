@@ -168,7 +168,7 @@ const menuData = [
   }
 ];
 
-let currentFilter = 'all';
+let currentFilter = 'hotCoffee';
 let currentSearch = '';
 
 function iconSvg(name, className = '') {
