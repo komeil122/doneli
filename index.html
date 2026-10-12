@@ -198,7 +198,8 @@ body {
   font-family:'Vazirmatn',sans-serif;
   font-size:0.82rem; font-weight:700;
   color:var(--espresso); cursor:pointer;
-  transition:all 0.3s; display:flex; align-items:center; gap:6px;
+  transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:6px;
+  white-space:nowrap;
 }
 .cart-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
 .cart-count {
@@ -346,6 +347,7 @@ section { padding:90px 5%; }
 #menu { background:var(--warm-white); }
 
 .menu-header { text-align:center; margin-bottom:2rem; }
+.section-intro { max-width:1100px; margin-left:auto; margin-right:auto; }
 
 /* Active branch indicator in menu */
 .menu-branch-indicator {
@@ -431,16 +433,17 @@ section { padding:90px 5%; }
   border-radius:var(--radius);
   transition:all var(--transition);
   overflow:hidden;
+  display:flex; flex-direction:column;
 }
 .menu-item:hover {
   transform:translateY(-4px);
   box-shadow:var(--shadow-warm);
   border-color:rgba(195,150,110,0.25);
 }
-.menu-item-body { padding:1.1rem 1.2rem 1rem; }
+.menu-item-body { padding:1.1rem 1.2rem 1rem; display:flex; flex:1; flex-direction:column; }
 .menu-item-name { font-weight:700; font-size:0.95rem; color:var(--text-primary); margin-bottom:3px; display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
 .menu-item-desc { font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin-bottom:0.9rem; }
-.menu-item-footer { display:flex; justify-content:space-between; align-items:flex-end; gap:8px; flex-wrap:wrap; }
+.menu-item-footer { display:flex; justify-content:space-between; align-items:flex-end; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:0.9rem; }
 .price-tags { display:flex; gap:6px; flex-wrap:wrap; }
 .price-tag {
   display:flex; flex-direction:column; align-items:center;
@@ -666,7 +669,7 @@ section { padding:90px 5%; }
 .branch-img-title {
   color:var(--cream); font-family:'Playfair Display',serif; font-size:1.3rem;
 }
-.branch-body { padding:1.5rem; background:#fff; }
+.branch-body { padding:1.5rem; background:#fff; display:flex; flex-direction:column; }
 .branch-info-row {
   display:flex; align-items:flex-start; gap:10px;
   margin-bottom:0.8rem; color:var(--text-secondary); font-size:0.85rem;
@@ -678,7 +681,7 @@ section { padding:90px 5%; }
   border-radius:50px; padding:4px 12px; font-size:0.72rem; color:var(--text-muted); font-weight:500;
 }
 .branch-cta {
-  display:flex; gap:10px; margin-top:1.2rem; flex-wrap:wrap;
+  display:flex; gap:10px; margin-top:auto; padding-top:1.2rem; flex-wrap:wrap;
 }
 .branch-order-btn {
   flex:1; min-width:120px; padding:10px 16px;
@@ -869,6 +872,23 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
   .gallery-item:nth-child(n){ grid-column:span 6; }
   .about-stats { grid-template-columns:1fr 1fr; }
 }
+@media(max-width:480px){
+  #navbar { gap:8px; padding-right:4%; padding-left:4%; }
+  .nav-logo { flex-shrink:0; font-size:1rem; white-space:nowrap; }
+  .nav-branch-pill { flex-shrink:1; gap:6px; padding:6px 9px; min-width:0; }
+  .nav-branch-change { display:none; }
+  .nav-branch-name { max-width:72px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.7rem; }
+  .nav-right { flex-shrink:0; gap:8px; }
+  .cart-btn { padding:8px 10px; font-size:0.75rem; gap:4px; }
+}
+@media(max-width:360px){
+  #navbar { gap:5px; padding-right:3%; padding-left:3%; }
+  .nav-logo { font-size:0.9rem; }
+  .nav-branch-pill { padding:6px 7px; }
+  .nav-branch-name { max-width:58px; }
+  .nav-right { gap:6px; }
+  .cart-btn { padding:8px; }
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
 }
@@ -913,7 +933,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
   </div>
 
   <div class="nav-right">
-    <button class="cart-btn" onclick="openCart()">
+    <button class="cart-btn" onclick="openCart()" aria-label="سبد خرید">
       🛒 سبد خرید
       <span class="cart-count hidden" id="cartCount">0</span>
     </button>
@@ -972,7 +992,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
 
 <!-- ══════════════ MENU ══════════════ -->
 <section id="menu">
-  <div class="menu-header reveal">
+  <div class="menu-header section-intro reveal">
     <div class="section-eyebrow" style="justify-content:center">منوی ما</div>
     <h2 class="section-title">سفارش آنلاین</h2>
     <p class="section-desc" style="margin:0 auto 1.5rem">آیتم‌ها را انتخاب کنید — سفارشتان از طریق واتساپ به شعبه ارسال می‌شود</p>
@@ -1010,7 +1030,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
 
 <!-- ══════════════ BRANCHES ══════════════ -->
 <section id="branches">
-  <div class="reveal">
+  <div class="reveal section-intro">
     <div class="section-eyebrow">شعبه‌های ما</div>
     <h2 class="section-title">ما را پیدا کنید</h2>
     <p class="section-desc">دو شعبه در قلب زاهدان، آماده پذیرایی از شما</p>
@@ -1060,7 +1080,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
 
 <!-- ══════════════ GALLERY ══════════════ -->
 <section id="gallery" style="background:var(--espresso)">
-  <div style="text-align:center" class="reveal">
+  <div style="text-align:center" class="reveal section-intro">
     <div class="section-eyebrow" style="justify-content:center;color:var(--gold)">لحظه‌های ژیپسوفیلا</div>
     <h2 class="section-title" style="color:var(--cream)">گالری تصاویر</h2>
   </div>
@@ -1094,7 +1114,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
 
 <!-- ══════════════ CONTACT ══════════════ -->
 <section id="contact">
-  <div style="text-align:center" class="reveal">
+  <div style="text-align:center" class="reveal section-intro">
     <div class="section-eyebrow" style="justify-content:center">ارتباط با ما</div>
     <h2 class="section-title">تماس با ژیپسوفیلا</h2>
   </div>
