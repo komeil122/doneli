@@ -253,11 +253,9 @@ body {
 }
 .hero-image {
   position:absolute; inset:0;
-  background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1800&q=80') center/cover;
+  width:100%; height:100%; object-fit:cover;
   opacity:0.2;
-  animation:heroZoom 20s ease-in-out infinite alternate;
 }
-@keyframes heroZoom { from{transform:scale(1.05)} to{transform:scale(1.12)} }
 .hero-overlay {
   position:absolute; inset:0;
   background:linear-gradient(to top,rgba(26,15,7,0.92) 0%,rgba(26,15,7,0.3) 60%,rgba(26,15,7,0.1) 100%);
@@ -436,7 +434,7 @@ section { padding:90px 5%; }
   display:flex; flex-direction:column;
 }
 .menu-item:hover {
-  transform:translateY(-4px);
+  transform:translateY(-3px);
   box-shadow:var(--shadow-warm);
   border-color:rgba(195,150,110,0.25);
 }
@@ -890,14 +888,14 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
   .cart-btn { padding:8px; }
 }
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
+  *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; scroll-behavior:auto!important; }
 }
 </style>
 </head>
 <body>
 
 <!-- ══════════════ BRANCH PICKER OVERLAY ══════════════ -->
-<div id="branchOverlay">
+<div id="branchOverlay" class="hidden">
   <div class="overlay-inner">
     <div class="overlay-logo">کافه و رستری <span>ژیپسوفیلا</span></div>
     <div class="overlay-tagline">your coffee · your vibe</div>
@@ -923,13 +921,13 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
 </div>
 
 <!-- ══════════════ NAV ══════════════ -->
-<nav id="navbar">
+<nav id="navbar" class="visible">
   <a href="#home" class="nav-logo">کافه <em>ژیپسوفیلا</em></a>
 
   <div class="nav-branch-pill" onclick="changeBranch()" title="تغییر شعبه">
     <div class="nav-branch-dot"></div>
     <span class="nav-branch-change">تغییر</span>
-    <span class="nav-branch-name" id="navBranchName">—</span>
+    <span class="nav-branch-name" id="navBranchName">انتخاب شعبه</span>
   </div>
 
   <div class="nav-right">
@@ -954,11 +952,11 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
 <!-- ══════════════ HERO ══════════════ -->
 <section id="home" class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-image"></div>
+  <img class="hero-image" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=960&amp;q=70" srcset="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=640&amp;q=70 640w, https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=960&amp;q=70 960w, https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1440&amp;q=70 1440w" sizes="100vw" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-branch-banner" id="heroBranchBanner">
-      <span>📍</span> <span id="heroBranchText">انتخاب شعبه...</span>
+      <span>📍</span> <span id="heroBranchText">برای سفارش، شعبه را انتخاب کنید</span>
     </div>
     <h1 class="hero-title">your coffee<br>your <em>vibe</em></h1>
     <p class="hero-subtitle">در ژیپسوفیلا، قهوه فقط یک نوشیدنی نیست — یک آیین است. سفارش دهید تا موقع رسیدنتان آماده باشد.</p>
@@ -1001,7 +999,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
       <div class="menu-branch-indicator" onclick="changeBranch()">
         <div class="menu-branch-indicator-dot"></div>
         <span class="menu-branch-indicator-btn">تغییر شعبه</span>
-        <span class="menu-branch-indicator-text" id="menuBranchText">شعبه انتخابی</span>
+        <span class="menu-branch-indicator-text" id="menuBranchText">برای سفارش، شعبه را انتخاب کنید</span>
       </div>
     </div>
   </div>
@@ -1038,7 +1036,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
   <div class="branches-grid">
     <div class="branch-card reveal">
       <div class="branch-img">
-        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80" alt="شعبه بزرگمهر" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=75" alt="شعبه بزرگمهر" loading="lazy" decoding="async">
         <div class="branch-img-overlay"><div class="branch-img-title">شعبه بزرگمهر</div></div>
       </div>
       <div class="branch-body">
@@ -1058,7 +1056,7 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
     </div>
     <div class="branch-card reveal reveal-d1">
       <div class="branch-img">
-        <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=800&q=80" alt="شعبه دروازه خاش" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=800&q=75" alt="شعبه دروازه خاش" loading="lazy" decoding="async">
         <div class="branch-img-overlay"><div class="branch-img-title">شعبه دروازه خاش</div></div>
       </div>
       <div class="branch-body">
@@ -1086,27 +1084,27 @@ footer { background:#0D0603; padding:50px 5% 24px; color:rgba(245,237,214,0.45);
   </div>
   <div class="gallery-grid reveal reveal-d1">
     <div class="gallery-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&q=80" alt="فضای داخلی" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&q=75" alt="فضای داخلی" loading="lazy" decoding="async">
       <div class="gallery-item-overlay"><span>فضای داخلی</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80" alt="بار قهوه" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=75" alt="بار قهوه" loading="lazy" decoding="async">
       <div class="gallery-item-overlay"><span>بار قهوه</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80" alt="لاته آرت" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=75" alt="لاته آرت" loading="lazy" decoding="async">
       <div class="gallery-item-overlay"><span>لاته آرت</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80" alt="ماچا" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=75" alt="ماچا" loading="lazy" decoding="async">
       <div class="gallery-item-overlay"><span>ماچا</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=500&q=80" alt="نوشیدنی" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=500&q=75" alt="نوشیدنی" loading="lazy" decoding="async">
       <div class="gallery-item-overlay"><span>نوشیدنی‌ها</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox(this)">
-      <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=500&q=80" alt="دکور" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=500&amp;q=75" alt="دکور" loading="lazy" decoding="async">
       <div class="gallery-item-overlay"><span>دکور</span></div>
     </div>
   </div>
@@ -1255,8 +1253,16 @@ const BRANCHES = {
 let activeBranch = null;
 
 function selectBranch(id) {
-  activeBranch = id;
   const b = BRANCHES[id];
+  if (!b) return;
+
+  const isChangingBranch = activeBranch && activeBranch !== id;
+  if (isChangingBranch && cart.length > 0 && !confirm('با تغییر شعبه، سبد خرید پاک می‌شود. ادامه می‌دهید؟')) {
+    document.getElementById('branchOverlay').classList.add('hidden');
+    return;
+  }
+
+  activeBranch = id;
 
   // Update all branch name displays
   document.getElementById('navBranchName').textContent = b.short;
@@ -1268,14 +1274,11 @@ function selectBranch(id) {
   document.getElementById('branchOverlay').classList.add('hidden');
   document.getElementById('navbar').classList.add('visible');
 
-  // Clear cart when switching branch
-  if (cart.length > 0) {
-    if (!confirm('با تغییر شعبه، سبد خرید پاک می‌شود. ادامه می‌دهید؟')) {
-      return;
-    }
+  // Clear the cart only after a confirmed switch to another branch.
+  if (isChangingBranch) {
+    cart = [];
+    renderCart();
   }
-  cart = [];
-  renderCart();
   renderMenu();
   showToast('✓ ' + b.name + ' انتخاب شد');
 }
@@ -1653,10 +1656,18 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-// Navbar scroll
-window.addEventListener('scroll', () => {
+// Batch scroll-driven UI updates to one per animation frame.
+let scrollUpdatePending = false;
+function updateScrollUI() {
   document.getElementById('backTop').classList.toggle('visible', window.scrollY > 300);
-});
+  scrollUpdatePending = false;
+}
+window.addEventListener('scroll', () => {
+  if (scrollUpdatePending) return;
+  scrollUpdatePending = true;
+  requestAnimationFrame(updateScrollUI);
+}, { passive:true });
+updateScrollUI();
 
 // Hamburger
 document.getElementById('hamburger').addEventListener('click', () => {
