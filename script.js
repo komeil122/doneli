@@ -177,32 +177,41 @@ function iconSvg(name, className = '') {
 
 function renderMenu() {
   const container = document.getElementById('menuContent');
-  let html = '';
-  let resultCount = 0;
+  const update = () => {
+    let html = '';
+    let resultCount = 0;
 
-  menuData.forEach(cat => {
-    if (currentFilter !== 'all' && cat.id !== currentFilter) return;
-    const items = cat.items.filter(item =>
-      item.name.includes(currentSearch) || item.desc.includes(currentSearch)
-    );
-    if (!items.length) return;
-    resultCount += items.length;
+    menuData.forEach(cat => {
+      if (currentFilter !== 'all' && cat.id !== currentFilter) return;
+      const items = cat.items.filter(item =>
+        item.name.includes(currentSearch) || item.desc.includes(currentSearch)
+      );
+      if (!items.length) return;
+      resultCount += items.length;
 
-    html += `<div class="menu-section">
-      <h3 class="menu-section-title">
-        ${iconSvg(cat.icon, 'menu-section-mark')} ${cat.label}
-        ${cat.note ? `<span class="menu-section-note">${cat.note}</span>` : ''}
-      </h3>
-      <div class="menu-grid">
-        ${items.map(item => buildMenuItemHTML(item)).join('')}
-      </div>
-    </div>`;
-  });
+      html += `<div class="menu-section">
+        <h3 class="menu-section-title">
+          ${iconSvg(cat.icon, 'menu-section-mark')} ${cat.label}
+          ${cat.note ? `<span class="menu-section-note">${cat.note}</span>` : ''}
+        </h3>
+        <div class="menu-grid">
+          ${items.map(item => buildMenuItemHTML(item)).join('')}
+        </div>
+      </div>`;
+    });
 
-  container.innerHTML = html || `<p style="text-align:center;color:var(--text-muted);padding:3rem">موردی یافت نشد.</p>`;
-  document.getElementById('menuStatus').textContent = resultCount
-    ? `${resultCount.toLocaleString('fa')} مورد در منو`
-    : 'موردی یافت نشد';
+    container.innerHTML = html || `<p style="text-align:center;color:var(--text-muted);padding:3rem">موردی یافت نشد.</p>`;
+    document.getElementById('menuStatus').textContent = resultCount
+      ? `${resultCount.toLocaleString('fa')} مورد در منو`
+      : 'موردی یافت نشد';
+  };
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (document.startViewTransition && !prefersReducedMotion) {
+    document.startViewTransition(update);
+  } else {
+    update();
+  }
 }
 
 function buildMenuItemHTML(item) {
@@ -567,7 +576,7 @@ document.addEventListener('keydown', e => {
 // Scroll reveal
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.08 });
+}, { threshold: 0.04, rootMargin: '0px 0px 56px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Contact form
