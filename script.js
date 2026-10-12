@@ -58,7 +58,7 @@ function selectBranch(id) {
     renderCart();
   }
   renderMenu();
-  showToast('✓ ' + b.name + ' انتخاب شد');
+  showToast(b.name + ' انتخاب شد');
 }
 
 function changeBranch() {
@@ -77,7 +77,7 @@ function changeBranch() {
 ══════════════════════════════════ */
 const menuData = [
   {
-    id:'hotCoffee', label:'نوشیدنی‌های گرم بر پایه قهوه', emoji:'☕',
+    id:'hotCoffee', label:'نوشیدنی‌های گرم بر پایه قهوه', icon:'coffee',
     note:'ترکیبی / تک خاستگاه',
     items:[
       { name:'اسپرسو',      desc:'اسپرسوی غنی و عمیق', prices:[{l:'ترکیبی',v:'۱۳۵,۰۰۰',n:135000},{l:'تک خاستگاه',v:'۱۹۰,۰۰۰',n:190000}] },
@@ -88,7 +88,7 @@ const menuData = [
     ]
   },
   {
-    id:'coldCoffee', label:'نوشیدنی‌های سرد بر پایه قهوه', emoji:'🧊',
+    id:'coldCoffee', label:'نوشیدنی‌های سرد بر پایه قهوه', icon:'ice',
     note:'ترکیبی / تک خاستگاه',
     items:[
       { name:'آیس امریکانو',   desc:'امریکانوی سرد روی یخ', prices:[{l:'ترکیبی',v:'۱۵۰,۰۰۰',n:150000},{l:'تک خاستگاه',v:'۲۰۰,۰۰۰',n:200000}] },
@@ -101,14 +101,14 @@ const menuData = [
     ]
   },
   {
-    id:'brewedCoffee', label:'قهوه‌های دمی', emoji:'☕',
+    id:'brewedCoffee', label:'قهوه‌های دمی', icon:'pour',
     items:[
       { name:'قهوه دم‌آوری شده', desc:'Pour Over با دقت و عشق', prices:[{l:'قیمت',v:'۲۴۰,۰۰۰',n:240000}] },
       { name:'V60',               desc:'درایپر V60 ژاپنی، عطرآگین', prices:[{l:'قیمت',v:'۲۶۰,۰۰۰',n:260000}] },
     ]
   },
   {
-    id:'matcha', label:'نوشیدنی‌های بر پایه ماچا', emoji:'🍵',
+    id:'matcha', label:'نوشیدنی‌های بر پایه ماچا', icon:'leaf',
     items:[
       { name:'لاته ماچا',            desc:'ماچای ژاپنی درجه اول با شیر گرم', prices:[{l:'قیمت',v:'۲۶۰,۰۰۰',n:260000}] },
       { name:'آیس ماچا توت فرنگی',   desc:'ماچا سرد با پوره توت فرنگی تازه', prices:[{l:'قیمت',v:'۲۶۵,۰۰۰',n:265000}] },
@@ -116,7 +116,7 @@ const menuData = [
     ]
   },
   {
-    id:'tea', label:'چای و دمنوش', emoji:'🫖',
+    id:'tea', label:'چای و دمنوش', icon:'tea',
     items:[
       { name:'چای سیاه',                desc:'چای سیاه اصیل لاهیجانی', prices:[{l:'قیمت',v:'۱۰۰,۰۰۰',n:100000}] },
       { name:'چای سبز',                 desc:'چای سبز معطر و آرام‌بخش', prices:[{l:'قیمت',v:'۱۱۰,۰۰۰',n:110000}] },
@@ -127,7 +127,7 @@ const menuData = [
     ]
   },
   {
-    id:'hotDrinks', label:'نوشیدنی‌های گرم', emoji:'🥛',
+    id:'hotDrinks', label:'نوشیدنی‌های گرم', icon:'cup',
     items:[
       { name:'ماسالا',     desc:'ماسالای هندی با ادویه‌های معطر', prices:[{l:'قیمت',v:'۲۰۰,۰۰۰',n:200000}] },
       { name:'شیرعسل',    desc:'شیر گرم با عسل طبیعی', prices:[{l:'قیمت',v:'۲۱۰,۰۰۰',n:210000}] },
@@ -135,14 +135,14 @@ const menuData = [
     ]
   },
   {
-    id:'smoothies', label:'اسموتی‌ها', emoji:'🥤',
+    id:'smoothies', label:'اسموتی‌ها', icon:'smoothie',
     items:[
       { name:'هندوانه توت فرنگی', desc:'تابستانی و خنک', prices:[{l:'قیمت',v:'۲۵۰,۰۰۰',n:250000}] },
       { name:'شانوت انبه',        desc:'سرشار از ویتامین', prices:[{l:'قیمت',v:'۳۵۵,۰۰۰',n:355000}] },
     ]
   },
   {
-    id:'shakes', label:'شیک‌ها', emoji:'🧋',
+    id:'shakes', label:'شیک‌ها', icon:'shake',
     items:[
       { name:'شیک توت فرنگی',       desc:'با میوه تازه و خامه', prices:[{l:'قیمت',v:'۳۰۰,۰۰۰',n:300000}] },
       { name:'شیک بری',             desc:'تمشک و بلوبری مخلوط', prices:[{l:'قیمت',v:'۳۲۰,۰۰۰',n:320000}] },
@@ -153,7 +153,7 @@ const menuData = [
     ]
   },
   {
-    id:'mocktails', label:'موکتل‌ها', emoji:'🍹',
+    id:'mocktails', label:'موکتل‌ها', icon:'citrus',
     items:[
       { name:'لیموناد',   desc:'لیموناد تازه و خنک', prices:[{l:'قیمت',v:'۲۱۰,۰۰۰',n:210000}] },
       { name:'پیناکولادا', desc:'آناناس و نارگیل', prices:[{l:'قیمت',v:'۲۵۰,۰۰۰',n:250000}] },
@@ -161,7 +161,7 @@ const menuData = [
     ]
   },
   {
-    id:'food', label:'میان وعده‌ها', emoji:'🍰',
+    id:'food', label:'میان وعده‌ها', icon:'pastry',
     items:[
       { name:'کیک و شیرینی', desc:'جزئیات و قیمت در این نسخه ثبت نشده است', prices:[] },
     ]
@@ -170,6 +170,10 @@ const menuData = [
 
 let currentFilter = 'all';
 let currentSearch = '';
+
+function iconSvg(name, className = '') {
+  return `<svg class="icon ${className}" aria-hidden="true" focusable="false"><use href="#icon-${name}"></use></svg>`;
+}
 
 function renderMenu() {
   const container = document.getElementById('menuContent');
@@ -186,7 +190,7 @@ function renderMenu() {
 
     html += `<div class="menu-section">
       <h3 class="menu-section-title">
-        ${cat.emoji} ${cat.label}
+        ${iconSvg(cat.icon, 'menu-section-mark')} ${cat.label}
         ${cat.note ? `<span class="menu-section-note">${cat.note}</span>` : ''}
       </h3>
       <div class="menu-grid">
@@ -215,14 +219,14 @@ function buildMenuItemHTML(item) {
         <span class="price-val">${item.prices[0].v}</span>
       </div>
     </div>`;
-    addBtn = `<button class="add-btn" onclick="handleAdd('${esc(item.name)}','${esc(item.desc)}',${item.prices[0].n},'${esc(item.prices[0].l)}')">+ افزودن</button>`;
+    addBtn = `<button class="add-btn" onclick="handleAdd('${esc(item.name)}','${esc(item.desc)}',${item.prices[0].n},'${esc(item.prices[0].l)}')">${iconSvg('plus')} افزودن</button>`;
   } else {
     priceArea = `<div class="price-tags">
       ${item.prices.map(p => `<div class="price-tag"><span class="price-label">${p.l}</span><span class="price-val">${p.v}</span></div>`).join('')}
     </div>`;
     const pricesJson = encodeURIComponent(JSON.stringify(item.prices));
     const syrupsJson = item.syrups ? encodeURIComponent(JSON.stringify(item.syrups)) : '';
-    addBtn = `<button class="add-btn" onclick="openVariant('${esc(item.name)}','${esc(item.desc)}','${pricesJson}','${syrupsJson}')">+ افزودن</button>`;
+    addBtn = `<button class="add-btn" onclick="openVariant('${esc(item.name)}','${esc(item.desc)}','${pricesJson}','${syrupsJson}')">${iconSvg('plus')} افزودن</button>`;
   }
 
   return `<div class="menu-item">
@@ -366,7 +370,7 @@ function addToCart(name, desc, price, variant) {
     cart.push({ key, name, desc, price, variant, qty: 1 });
   }
   renderCart();
-  showToast('✓ ' + name + (variant ? ' (' + variant + ')' : '') + ' افزوده شد');
+  showToast(name + (variant ? ' (' + variant + ')' : '') + ' افزوده شد');
 }
 
 function removeFromCart(key) {
@@ -390,7 +394,7 @@ function renderCart() {
   const footer = document.getElementById('cartFooter');
 
   if (cart.length === 0) {
-    body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div class="cart-empty-text">سبد خرید خالی است</div></div>`;
+    body.innerHTML = `<div class="cart-empty">${iconSvg('cart', 'cart-empty-icon-svg')}<div class="cart-empty-text">سبد خرید خالی است</div></div>`;
     footer.style.display = 'none';
     return;
   }
@@ -451,8 +455,8 @@ function sendOrder() {
   const note = document.getElementById('cartNote').value.trim();
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-  let msg = `🛒 *سفارش جدید — کافه ژیپسوفیلا*\n`;
-  msg += `📍 *شعبه:* ${b.name}\n`;
+  let msg = `*سفارش جدید — کافه ژیپسوفیلا*\n`;
+  msg += `*شعبه:* ${b.name}\n`;
   msg += `──────────────────\n`;
   cart.forEach(item => {
     msg += `• ${item.name}`;
@@ -462,9 +466,9 @@ function sendOrder() {
     msg += '\n';
   });
   msg += `──────────────────\n`;
-  if (total > 0) msg += `💰 *جمع کل:* ${total.toLocaleString('fa')} ریال\n`;
-  if (note) msg += `📝 *توضیحات:* ${note}\n`;
-  msg += `\nلطفاً سفارش را تأیید کنید 🙏`;
+  if (total > 0) msg += `*جمع کل:* ${total.toLocaleString('fa')} ریال\n`;
+  if (note) msg += `*توضیحات:* ${note}\n`;
+  msg += `\nلطفاً سفارش را تأیید کنید.`;
 
   const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`;
   const orderWindow = window.open(url, '_blank');
