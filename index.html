@@ -292,8 +292,8 @@
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="بازگشت به بالای صفحه">↑</button>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-hidden="true" aria-label="نمایش تصویر">
-  <button class="lightbox-close" type="button" aria-label="بستن تصویر"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
+<div class="lightbox" id="lightbox" onclick="if (event.target === this) closeLightbox()" role="dialog" aria-modal="true" aria-hidden="true" aria-label="نمایش تصویر">
+  <button class="lightbox-close" type="button" onclick="closeLightbox()" aria-label="بستن تصویر"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
   <img id="lightboxImg" alt="">
 </div>
 

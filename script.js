@@ -549,7 +549,7 @@ document.addEventListener('keydown', e => {
     const dialog = document.querySelector('#branchOverlay:not(.hidden), #cartDrawer.open, #variantBackdrop.open, #lightbox.open');
     if (!dialog) return;
     const focusable = [...dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled])')]
-      .filter(el => getComputedStyle(el).visibility !== 'hidden');
+      .filter(el => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden');
     if (!focusable.length) return;
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
